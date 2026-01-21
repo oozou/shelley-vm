@@ -2,6 +2,49 @@
 
 A ready-to-use development environment with [Shelley](https://github.com/boldsoftware/shelley), an AI coding assistant powered by Claude. Describe what you want to build, and Shelley writes the code for you.
 
+## How AI coding assistants work
+
+### What is an LLM?
+
+LLM stands for "Large Language Model" - it's the technology behind AI assistants like Claude, ChatGPT, and others. Think of it as a very sophisticated autocomplete: you give it text, and it predicts what should come next. But because it was trained on enormous amounts of text (books, code, websites), it can do much more than simple autocomplete - it can write code, explain concepts, and solve problems.
+
+### What is a "model"?
+
+A model is a specific version of an LLM. Anthropic (the company behind Claude) offers several models:
+
+- **Claude Opus 4** - The most capable model, best for complex tasks
+- **Claude Sonnet 4** - A good balance of capability and speed
+- **Claude Haiku 3.5** - The fastest and cheapest, good for simpler tasks
+
+Shelley uses the Claude API to send your requests to these models and get responses back.
+
+### How much does it cost?
+
+Using the API costs money based on how much text you send and receive (measured in "tokens" - roughly 4 characters per token). Current pricing for Claude Sonnet 4:
+
+- Input (what you send): $3 per million tokens
+- Output (what Claude writes): $15 per million tokens
+
+For building a simple app, expect to spend $0.50 to $5 depending on complexity. You can monitor your usage at [console.anthropic.com](https://console.anthropic.com/).
+
+### Shelley vs Claude Code
+
+There are different ways to use Claude for coding:
+
+**Shelley (what we're setting up here)**
+- Runs in a browser - no coding experience needed
+- Works autonomously - just describe what you want and let it build
+- Runs inside a virtual machine (VM), so it can't accidentally damage your computer
+- If something goes wrong, just delete the VM and start fresh
+
+**Claude Code**
+- Runs directly on your computer via the terminal
+- More powerful and flexible, but requires more technical knowledge
+- Asks for permission before running commands (because it could affect your actual files)
+- Better for experienced developers who want more control
+
+We're starting with Shelley because it's safer and easier. The VM acts as a sandbox - Shelley can run any command it needs without asking permission, because the worst case scenario is it breaks the VM (which you can just recreate). On your real computer, you'd want those safety checks.
+
 ## What you'll need
 
 - A Mac (Intel or Apple Silicon)
