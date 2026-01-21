@@ -142,6 +142,78 @@ You should see the Shelley interface. Start building your app by describing what
 
 When Shelley creates a web app for you, you can view it at [http://localhost:8000](http://localhost:8000).
 
+## Prompting guide
+
+### What is a prompt?
+
+A "prompt" is simply what you type to tell Shelley what to do. It's your instruction or request. The better you describe what you want, the better results you'll get.
+
+### What is context?
+
+"Context" is everything Shelley knows about your current conversation - all the messages you've sent, all the code it's written, and all the files it's seen. Think of it like Shelley's short-term memory for this project.
+
+Context has a limit. As you keep chatting and building, eventually the conversation gets too long and Shelley might start forgetting earlier details or get confused. When this happens, it's time to start a new agent (see below).
+
+### Starting a new agent
+
+In Shelley, you can start a new conversation by clicking **"New Agent"** in the interface. Do this when:
+
+- The current conversation is getting long and Shelley seems confused
+- You want to start a completely different project
+- Shelley is stuck in a loop or keeps making the same mistakes
+
+Starting fresh gives Shelley a clean slate. If you're continuing work on an existing project, just tell the new agent what files to look at: "Look at the project in /root/my-app and add a login page."
+
+### Tips for better prompts
+
+**Be specific about what you want:**
+- Vague: "Make a website"
+- Better: "Create a Next.js app with a homepage that shows a list of blog posts"
+
+**Mention the technologies you want:**
+- "Use Next.js with TypeScript and Tailwind CSS"
+- "Create a React component using shadcn/ui"
+
+**Describe the end result:**
+- "When I click the button, it should show a loading spinner, then display the results"
+
+**Break complex projects into steps:**
+- First: "Create a Next.js app with a basic layout"
+- Then: "Add a form to create new posts"
+- Then: "Add the ability to edit and delete posts"
+
+### Example prompts
+
+**Simple web apps:**
+
+> Create a Next.js app with a todo list. I should be able to add items, mark them as done, and delete them. Use Tailwind CSS for styling. Store the todos in local storage so they persist when I refresh the page.
+
+> Build a React app that shows the current weather. Use the OpenWeatherMap API (here's my API key: xxx). Show temperature, humidity, and a weather icon. Let me search for different cities.
+
+**Using third-party APIs:**
+
+> Create a Next.js app with an interactive map using Mapbox. Here's my Mapbox access token: pk.xxx. Let me click on the map to drop pins and save locations with names.
+
+> Build a recipe app that uses the Spoonacular API to search for recipes. My API key is xxx. Show recipe cards with images and let me click to see full instructions.
+
+**Working with existing code:**
+
+> Look at the project in /root/my-app. Add a dark mode toggle that saves the preference to local storage.
+
+> Check out the code in /root/my-website. The contact form isn't sending emails - can you fix it and show me what was wrong?
+
+**Adding tests:**
+
+> Look at the project in /root/my-app. Add Jest tests for all the utility functions in the /utils folder.
+
+> Review the React components in /root/my-app/components and add React Testing Library tests for each one. Focus on testing user interactions.
+
+**Learning and exploring:**
+
+> I have a Next.js project in /root/my-app. Explain how the authentication flow works - walk me through what happens when a user logs in.
+
+> Look at /root/my-app/api and explain what each API endpoint does.
+
 ## Everyday usage
 
 ### Starting Shelley (after restarting your computer)
