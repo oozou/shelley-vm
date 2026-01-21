@@ -216,6 +216,42 @@ docker run -d --name shelley-vm --privileged -p 9000:9000 -p 8000:8000 -e ANTHRO
 
 This saves your work in a folder called `shelley-data` in your home directory.
 
+### Getting files out of the VM
+
+If you started the VM without linking a directory (using the command in Step 7), your files are still inside the container. Here's how to copy them to your Mac:
+
+**Copy a single file:**
+
+```
+docker cp shelley-vm:/path/to/file.txt ~/Desktop/
+```
+
+For example, to copy a file called `app.py` from the home directory:
+
+```
+docker cp shelley-vm:/root/app.py ~/Desktop/
+```
+
+**Copy an entire folder:**
+
+```
+docker cp shelley-vm:/root/my-project ~/Desktop/
+```
+
+This copies the `my-project` folder to your Desktop.
+
+**Find where your files are:**
+
+If you're not sure where Shelley put your files, you can look inside the VM:
+
+```
+docker exec -it shelley-vm /bin/bash
+```
+
+This opens a command prompt inside the VM. You can use `ls` to list files and `cd` to navigate. Type `exit` when you're done.
+
+**Tip:** Shelley typically creates projects in `/root/` (the home directory inside the VM).
+
 ## Sharing your app with others
 
 Want to show someone what you've built? You can use ngrok to create a public link to your app.
