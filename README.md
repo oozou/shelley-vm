@@ -324,6 +324,45 @@ This opens a command prompt inside the VM. You can use `ls` to list files and `c
 
 **Tip:** Shelley typically creates projects in `/root/` (the home directory inside the VM).
 
+### Exposing additional ports
+
+The VM only exposes ports 9000 (Shelley) and 8000 (your app) by default. If your app uses a different port (like 3001), you can't just add a port to a running container - you need to recreate it.
+
+**Don't worry, your files are safe!** Here's how to do it:
+
+1. First, copy your project files out of the VM (so you don't lose them):
+
+```
+docker cp shelley-vm:/root ~/Desktop/shelley-backup
+```
+
+2. Stop and remove the old container:
+
+```
+docker stop shelley-vm
+docker rm shelley-vm
+```
+
+3. Start a new container with the additional port (add `-p 3001:3001` or whatever port you need):
+
+```
+docker run -d --name shelley-vm --privileged -p 9000:9000 -p 8000:8000 -p 3001:3001 -e ANTHROPIC_API_KEY=your-api-key-here shelley-vm
+```
+
+4. Copy your files back into the VM:
+
+```
+docker cp ~/Desktop/shelley-backup/. shelley-vm:/root/
+```
+
+**Pro tip:** To avoid this in the future, you can expose a range of ports when first creating the container:
+
+```
+docker run -d --name shelley-vm --privileged -p 9000:9000 -p 8000-8010:8000-8010 -p 3000-3010:3000-3010 -e ANTHROPIC_API_KEY=your-api-key-here shelley-vm
+```
+
+This exposes ports 8000-8010 and 3000-3010, so you're ready for whatever port your app needs.
+
 ## Sharing your app with others
 
 Want to show someone what you've built? You can use ngrok to create a public link to your app.
